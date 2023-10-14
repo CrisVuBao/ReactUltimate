@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <title>React JSX Element</title>
+    <div id='app'></div>
+    <script type="text/babel">
+
+        // Bài tập: 
+
+        function Button({ Title, p, onClick }) {
+            let Component = 'button';
+            let props = {}
+
+            if (p) {
+                Component = 'p'
+                props.p = p;
+            }
+
+            if (onClick) {
+                props.onClick = onClick
+            }
+
+            return (
+                <Component {...props}>{Title}</Component>
+            )
+        }
+
+        function App() {
+            return (
+                <div>
+                    <h1>Function Button Component</h1>
+                    <Button
+                        Title="Bấm vào chữ bấm vào đây"
+                        p="Thẻ p"
+                        onClick={() => alert("onClick")}
+                    />
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+
+</html>

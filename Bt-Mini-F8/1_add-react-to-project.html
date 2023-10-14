@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+</head>
+
+<body>
+    <h1 id="hpro">Add React to website</h1>
+</body>
+<script>
+
+    // React.createElement(type(thẻ), prop(chứa object), children(thứ chứa ở giữa thẻ mở và thẻ đóng));
+    const test = React.createElement('ul', null,
+        React.createElement('li', null, "hello"),
+        React.createElement('li', null, "hello li")
+    )
+    console.log(test);
+</script>
+
+</html>

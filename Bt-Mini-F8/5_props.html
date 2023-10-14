@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <title>React JSX Element</title>
+    <div id='app'></div>
+    <script type="text/babel">
+
+        /* Lý thuyết:
+            - React Element
+                + props giống như Attribute của thẻ HTML
+            - React Component
+                + Sử dụng props giống như tham số đầu vào của Function
+                + Tự do đặt tên props: Đặt theo camelCase(từ thứ tự thứ hai viết hoa)
+
+            ! Chú ý:
+                - Props cơ bản là đối số(tham số đầu vào) của Component
+        */
+        const PostList = () => {
+            return (
+                <div>
+                    <h3>Hướng dẫn chi tiết cách sử dụng Dev Mode trong khóa Pro</h3>
+                    <p>Chào bạn! Nếu bạn đã là học viên khóa Pro của F8, chắc hẳn bạn đã biết tới "Dev Mode" - giúp thực hành code song song khi xem...</p>
+                    <a href="#">Front-end</a>
+                </div>
+            )
+        }
+
+
+        // App.js
+        const App = () => { // This is React Component
+            return (
+                <div> {/* This is React Element*/}
+                    <h1>Hello APP</h1>
+                    <PostList />
+                    {courses.map((courses, index) =>
+                        <CourseItem
+                            key={index}
+                            title={courses.title}
+                            imageUrl={courses.image_url}
+                            description={courses.description}
+                            number={courses.priority}
+                        />
+                    )
+
+                    }
+                </div>
+            )
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+
+
+        // Bài tập: 
+        const courses = [
+            {
+                "id": 1,
+                "title": "Front-end / Mobile apps",
+                "sub_title": null,
+                "description": "Xây dựng giao diện trang web, mobile apps",
+                "image": "topics/front-end.png",
+                "slug": "front-end-mobile-apps",
+                "priority": 1,
+                "created_at": "2022-07-01T00:41:35.000000Z",
+                "updated_at": "2022-07-01T00:41:35.000000Z",
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/topics/front-end.png"
+            },
+            {
+                "id": 2,
+                "title": "Back-end / Devops",
+                "sub_title": null,
+                "description": "Thiết kế cơ sở dữ liệu, xử lý các bài toán logic",
+                "image": "topics/back-end.png",
+                "slug": "back-end-devops",
+                "priority": 2,
+                "created_at": "2022-07-01T00:41:35.000000Z",
+                "updated_at": "2022-07-01T00:41:35.000000Z",
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/topics/back-end.png"
+            },
+            {
+                "id": 4,
+                "title": "UI / UX / Design",
+                "sub_title": null,
+                "description": "Thiết kế giao diện và trải nghiệm người dùng",
+                "image": "topics/ui-ux.png",
+                "slug": "ui-ux-design",
+                "priority": 3,
+                "created_at": "2022-07-01T00:41:35.000000Z",
+                "updated_at": "2022-07-01T00:41:35.000000Z",
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/topics/ui-ux.png"
+            },
+            {
+                "id": 3,
+                "title": "Others",
+                "sub_title": null,
+                "description": "Các chủ đề khác",
+                "image": "topics/others.png",
+                "slug": "others",
+                "priority": 4,
+                "created_at": "2022-07-01T00:41:35.000000Z",
+                "updated_at": "2022-07-01T00:41:35.000000Z",
+                "image_url": "https://files.fullstack.edu.vn/f8-prod/topics/others.png"
+            }
+        ]
+
+        function CourseItem({
+            key,
+            title,
+            imageUrl,
+            description,
+            number
+        }) {
+
+            return (
+                <React.Fragment>
+                    <h3 className="title">{props.title}</h3>
+                    <image className="img">{props.imageUrl}</image>
+                    <h5 className="descript"></h5>
+                    <p className="number"></p>
+                </React.Fragment>
+            )
+        }  
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <title>React JSX Element</title>
+    <div id='app'></div>
+    <script type="text/babel">
+
+        // Bài tập: 
+        function Cho(data, children) {
+            return (
+                <ul>
+                    {data.map((dataCho) => children(dataCho))}
+                </ul>
+            )
+        }
+
+        const conCho = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+        function App() {
+
+            return (
+                <div id="wrapper">
+                    <Cho data={conCho}>
+                        {(dataCho) => <li>{dataCho}</li>}
+                    </Cho>
+                </div>
+            )
+        }
+
+
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+
+</html>

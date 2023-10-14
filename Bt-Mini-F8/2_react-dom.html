@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+</head>
+
+<body>
+    <h1 id="hpro">React-Dom</h1>
+</body>
+<div id='root'></div>
+<script>
+
+    // React.createElement(type(thẻ), prop(chứa object), children(thứ chứa ở giữa thẻ mở và thẻ đóng));
+    const test = React.createElement('div', {
+        className: "getDiv"
+    },
+        React.createElement('h1', {
+            className: "getH1"
+        }, "Chào H1"),
+        React.createElement('ul', {
+            className: "Chào ul"
+        },
+            React.createElement('li', {
+                className: "getLi"
+            }, "Chào thẻ li")
+        ),
+        React.createElement('h3', {
+            className: "getH3"
+        }, "Chào H3")
+    )
+
+    const getElementRoot = document.getElementById('root');
+    const root = ReactDOM.createRoot(getElementRoot);
+    root.render(test);
+</script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="root"></div>
+
+<body>
+
+    <script>
+        function myDisplayer(some) {
+            document.getElementById("root").innerHTML = some;
+        }
+
+        let text = (tex1, text2, display) => { // display => đại diện cho hàm muốn truyền vào
+            let sumText = tex1 + text2;
+            display(sumText);
+        }
+
+        text("hi", "hi", myDisplayer); // myDisplayer => coi như là 1 value truyền vào trong text, để đại diện cho tham số display để hiện lên trên màn hình theo logic của hàm myDisplayer
+
+
+        let tinhTong = (a, b, hienRa) => {
+            hienRa(a + b);
+        }
+
+        tinhTong(100, 10, myDisplayer);
+
+
+
+
+    </script>
+</body>
+
+</html>

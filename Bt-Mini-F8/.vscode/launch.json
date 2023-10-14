@@ -1,0 +1,15 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open 7_Component.html",
+            "file": "d:\\Hoc Tap\\JavaScript\\React-F8\\Bt-Mini-F8\\7_Component.html"
+        }
+    ]
+}

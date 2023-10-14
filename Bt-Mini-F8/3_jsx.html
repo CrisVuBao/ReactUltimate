@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <h1 id="hpro">React-Dom</h1>
+</body>
+<div id="root"></div>
+<script type="text/babel">
+    // React.createElement(type(thẻ), prop(chứa object), children(thứ chứa ở giữa thẻ mở và thẻ đóng));
+    const courses = [
+        {
+            name: "HTML,CSS"
+        },
+        {
+            name: "RESPONSE"
+        },
+        {
+            name: "ReactJS"
+        }
+    ]
+
+    const ul = (<ul>
+        {courses.map(m =>
+            <li>{m.name}</li>
+        )}
+    </ul>
+    )
+
+    ReactDOM.render(ul, document.getElementById('root'));
+
+</script>
+
+</html>
