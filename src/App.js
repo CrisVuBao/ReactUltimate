@@ -1,23 +1,24 @@
 import { useState } from "react";
 
 function App() {
-  const [conCho, setConCho] = useState({
-    ten: "Chó ngu",
-    tuoi: 100,
-    soThich: "an cut"
-  })
+  const [gift, setGift] = useState();
 
-  const handleAdd = () => {
-    setConCho({
-      ...conCho,
-      trinhDo: "Chó"
-    })
+  const dataGift = [
+    "Cs Game",
+    "LOL",
+    "Pentakill"
+  ]
+
+  const handleGift = () => {
+    let index = Math.floor(Math.random(dataGift) * 3);
+    console.log(index)
+    return setGift(dataGift[index])
   }
 
   return (
     <>
-      <h1>{JSON.stringify(conCho)}</h1>
-      <button onClick={handleAdd}>ClickAdd</button>
+      <h3>{gift || "không có phần thưởng"}</h3> {/*có data trong gift thì trả ra gift, hoặc không có thì trả ra " ko có phần thưởng" */}
+      <button onClick={handleGift}>Get phần thưởng</button>
     </>
   )
 }
