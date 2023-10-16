@@ -1,24 +1,56 @@
 import { useState } from "react";
 
 function App() {
-  const [gift, setGift] = useState();
+  const [checked, setChecked] = useState([])
 
-  const dataGift = [
-    "Cs Game",
-    "LOL",
-    "Pentakill"
+  const data = [
+    {
+      id: 1,
+      name: "MTP 1"
+    },
+    {
+      id: 2,
+      name: "MTP 2"
+    },
+    {
+      id: 3,
+      name: "MTP 3"
+    },
   ]
 
-  const handleGift = () => {
-    let index = Math.floor(Math.random(dataGift) * 3);
-    console.log(index)
-    return setGift(dataGift[index])
+  const handleCheck = (id) => {
+    setChecked(prev => {
+      const isChecked = checked.includes(id);
+      if (isChecked) {
+        return checked.filter(item => item != id)
+      }
+      else {
+        return [...prev, id]
+      }
+    }
+    )
+  }
+
+  const handleResName = (id) => {
+    console.log({ ids: checked })
   }
 
   return (
     <>
-      <h3>{gift || "không có phần thưởng"}</h3> {/*có data trong gift thì trả ra gift, hoặc không có thì trả ra " ko có phần thưởng" */}
-      <button onClick={handleGift}>Get phần thưởng</button>
+      <div
+        style={{ display: 'flex', flexDirection: 'column' }}
+      >
+        {data.map(n =>
+          <div key={n.id}>
+            <input
+              type="checkbox"
+              checked={checked.includes(n.id)}
+              onChange={() => handleCheck(n.id)} // nếu không dùng amonymous function thì sẽ ko trỏ đến component(hàm), mà nó sẽ ra underfind
+            />{n.name}
+          </div>
+        )}
+      </div>
+      <button >đăng ký</button>
     </>
   )
 }
