@@ -1,38 +1,18 @@
 import { useState } from "react";
+import Content from "./Content";
 
 function App() {
-  const [checked, setChecked] = useState([])
+  const [job, setJob] = useState([])
+  const [writeJob, setWriteJob] = useState('')
 
-  const data = [
-    {
-      id: 1,
-      name: "MTP 1"
-    },
-    {
-      id: 2,
-      name: "MTP 2"
-    },
-    {
-      id: 3,
-      name: "MTP 3"
-    },
-  ]
+  const handleAddJob = () => {
+    setJob(set =>
+      [...set,
+        writeJob
+      ]
 
-  const handleCheck = (id) => {
-    setChecked(prev => {
-      const isChecked = checked.includes(id);
-      if (isChecked) {
-        return checked.filter(item => item != id)
-      }
-      else {
-        return [...prev, id]
-      }
-    }
     )
-  }
-
-  const handleResName = (id) => {
-    console.log({ ids: checked })
+    localStorage.setItem('data', job);
   }
 
   return (
@@ -40,17 +20,20 @@ function App() {
       <div
         style={{ display: 'flex', flexDirection: 'column' }}
       >
-        {data.map(n =>
-          <div key={n.id}>
-            <input
-              type="checkbox"
-              checked={checked.includes(n.id)}
-              onChange={() => handleCheck(n.id)} // nếu không dùng amonymous function thì sẽ ko trỏ đến component(hàm), mà nó sẽ ra underfind
-            />{n.name}
-          </div>
-        )}
+
+        <input
+          value={writeJob}
+          onChange={e => setWriteJob(e.target.value)}
+        />
+        <button onClick={handleAddJob}>đăng ký lịch trình</button>
+        <ul>
+          {job.map((itemJob, index) =>
+            <li key={index}>{itemJob}</li>
+          )
+          }
+        </ul>
+        <Content />
       </div>
-      <button >đăng ký</button>
     </>
   )
 }
