@@ -17,6 +17,7 @@ export default function Content() {
     const [changeText, setChangeText] = useState([])
     const [click, setClick] = useState("posts")
     const [dataPost, setDataPost] = useState([])
+    const [showScroll, setShowScroll] = useState(false)
 
     const handleText = (text) => {
         setChangeText(prev =>
@@ -28,6 +29,27 @@ export default function Content() {
             .then(res => res.json())
             .then(data => setDataPost(data))
     }, [click])
+
+    useEffect(() => {
+        const hanldeScroll = () => {
+            if (window.scrollY >= 200) {
+                setShowScroll(true)
+            }
+            else {
+                setShowScroll(false)
+            }
+        }
+        console.log(showScroll)
+
+        window.addEventListener('scroll', hanldeScroll)
+        console.log("add")
+
+        return () => {
+            window.removeEventListener('scroll', hanldeScroll)
+            console.log("Remove")
+        }
+    })
+
 
     return (
         <>
@@ -45,6 +67,17 @@ export default function Content() {
                         <li key={dt.id}>{dt.title}</li>
                     )}
                 </ul>
+                {showScroll && <Button
+                    variant='contained'
+                    sx={{
+                        position: 'fixed',
+                        bottom: 0,
+                        right: 0,
+                        width: 300,
+                    }}
+
+                >
+                    Hiện rồi nè</Button>}
             </div >
             <div>
                 <input
