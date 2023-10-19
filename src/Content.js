@@ -1,33 +1,65 @@
 
 // useEffect
-// 1. useEffect(callback)
-// - Gọi callback mỗi khi componet re-render
-// - Gọi callback sau khi component thêm element vào DOM
 
-// 2. useEffect(callback, [])
-// - Chỉ gọi callback một lần sau khi component được mounted
+//3. useEffect(callback, [dependency])
+// - Callback sẽ được gọi lại mỗi khi dependency thay đổi
 
 // -------------------------------
-// 1.Callback luôn được gọi sau khi Component Mounted
+// Callback luôn được gọi sau khi Component Mounted
 
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react"
 
+let typeClick = ["posts", "comments", "albums", "photos", "todos", "users"]
+
 export default function Content() {
-    const [post, setPost] = useState([]);
+    const [text, setText] = useState('');
+    const [changeText, setChangeText] = useState([])
+    const [click, setClick] = useState("posts")
+    const [dataPost, setDataPost] = useState([])
+
+    const handleText = (text) => {
+        setChangeText(prev =>
+            [...prev, text])
+    }
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch(`https://jsonplaceholder.typicode.com/${click}`)
             .then(res => res.json())
-            .then(inputPost => setPost(inputPost))
-    }, [])
+            .then(data => setDataPost(data))
+    }, [click])
 
     return (
         <>
-            <ul>
-                {post.map(p =>
-                    <li key={p.id}>{p.title}</li>
+            <div>
+                {typeClick.map(c =>
+                    <Button
+                        key={c}
+                        color="warning"
+                        onClick={() => setClick(c)}
+                        style={c === click ? { backgroundColor: '#F4DFB6' } : {}}
+                    >{c}</Button>
                 )}
-            </ul>
+                <ul>
+                    {dataPost.map(dt =>
+                        <li key={dt.id}>{dt.title}</li>
+                    )}
+                </ul>
+            </div >
+            <div>
+                <input
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                />
+                <button
+                    onClick={() => handleText(text)}
+                >xuất text</button>
+                <ul>
+                    {changeText.map(text =>
+                        <li key={text}>{text}</li>
+                    )}
+                </ul>
+            </div>
         </>
     )
 }

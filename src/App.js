@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import Content from "./Content";
+import { Button } from "@mui/material";
 
 function App() {
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   return (
     <>
-      <button
+      <Button
+        variant="contained"
+        sx={{ margin: 2 }}
         onClick={() => setShow(!show)}
       >
-        Nhấn nè
-      </button>
+        bấm nè
+      </Button>
       {!show && <Content />}
     </>
   )
