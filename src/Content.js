@@ -10,89 +10,32 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react"
 
-let typeClick = ["posts", "comments", "albums", "photos", "todos", "users"]
-
 export default function Content() {
-    const [text, setText] = useState('');
-    const [changeText, setChangeText] = useState([])
-    const [click, setClick] = useState("posts")
-    const [dataPost, setDataPost] = useState([])
-    const [showScroll, setShowScroll] = useState(false)
-
-    const handleText = (text) => {
-        setChangeText(prev =>
-            [...prev, text])
-    }
+    const [size, setSize] = useState(window.innerWidth)
 
     useEffect(() => {
-        fetch(`https://jsonplaceholder.typicode.com/${click}`)
-            .then(res => res.json())
-            .then(data => setDataPost(data))
-    }, [click])
-
-    useEffect(() => {
-        const hanldeScroll = () => {
-            if (window.scrollY >= 200) {
-                setShowScroll(true)
-            }
-            else {
-                setShowScroll(false)
-            }
+        const handleSize = () => {
+            setSize(window.innerWidth);
         }
-        console.log(showScroll)
 
-        window.addEventListener('scroll', hanldeScroll)
-        console.log("add")
+        window.addEventListener('resize', handleSize)
+        console.log("AddSize");
 
         return () => {
-            window.removeEventListener('scroll', hanldeScroll)
-            console.log("Remove")
+            window.removeEventListener("resize", handleSize)
+            console.log("Remove Size");
         }
-    })
+    }, [])
+
 
 
     return (
         <>
-            <div>
-                {typeClick.map(c =>
-                    <Button
-                        key={c}
-                        color="warning"
-                        onClick={() => setClick(c)}
-                        style={c === click ? { backgroundColor: '#F4DFB6' } : {}}
-                    >{c}</Button>
-                )}
-                <ul>
-                    {dataPost.map(dt =>
-                        <li key={dt.id}>{dt.title}</li>
-                    )}
-                </ul>
-                {showScroll && <Button
-                    variant='contained'
-                    sx={{
-                        position: 'fixed',
-                        bottom: 0,
-                        right: 0,
-                        width: 300,
-                    }}
-
-                >
-                    Hiện rồi nè</Button>}
-            </div >
-            <div>
-                <input
-                    value={text}
-                    onChange={(e) => setText(e.target.value)}
-                />
-                <button
-                    onClick={() => handleText(text)}
-                >xuất text</button>
-                <ul>
-                    {changeText.map(text =>
-                        <li key={text}>{text}</li>
-                    )}
-                </ul>
-            </div>
+            <Button
+                variant="outlined"
+                onClick={() => setSize(size + 1)}
+            >Bấm</Button>
+            <h1>{size}</h1>
         </>
     )
 }
