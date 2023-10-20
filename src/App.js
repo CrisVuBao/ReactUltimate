@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Content from "./Content";
+import Content from "./Content/Content";
 import { Button } from "@mui/material";
 
 function App() {
