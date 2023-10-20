@@ -11,45 +11,50 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react"
 import "./content.css";
 
-export default function Content() {
+const data = [{
+    id: 1,
+    name: "Học React"
+},
+{
+    id: 2,
+    name: "Học ASP"
+},
+{
+    id: 3,
+    name: "Học Siêu nhân"
+}
+]
 
-    const [avatar, setAvatar] = useState();
+export default function Content() {
+    const [lessonId, setLessonId] = useState(1);
 
     useEffect(() => {
-
-        // Đây là cleanup Function, đây là phương pháp tránh bị rò rỉ bộ nhớ (memory leak);
-        return () => {
-            avatar && URL.revokeObjectURL(avatar.game);
+        const handleLesson = (title) => {
+            console.log(title);
         }
-    }, [avatar])
 
-    const handleFile = (e) => {
-        let file = e.target.files[0];
+        window.addEventListener(`Lesson ${lessonId}`, handleLesson)
 
-        file.game = URL.createObjectURL(file);
-
-        setAvatar(file);
-    }
+        // Cleanup Function
+        return () => {
+            window.removeEventListener(`Lesson ${lessonId}`, handleLesson)
+        }
+    }, [lessonId])
 
     return (
         <>
-            <div className="sm">
-                <label class="block container">
-                    <span class="sr-only">Choose profile photo</span>
-                    <input type="file" class="block w-full text-sm text-slate-500
-                file:mr-4 file:py-2 file:px-4
-                file:rounded-full file:border-0
-                file:text-sm file:font-semibold
-                file:bg-violet-50 file:text-rose-600
-                hover:file:bg-violet-100
-                "
-                        onChange={handleFile}
-                    />
-                    {avatar &&
-                        <img src={avatar.game} alt="" width="80%" />
-                    }
-                </label>
-            </div>
+            {data.map(data =>
+                <Button
+                    key={data.id}
+                    style={{
+                        backgroundColor: lessonId === data.id ? "#9EDDFF" : ""
+                    }}
+                    onClick={() => {
+                        setLessonId(data.id);
+                        console.log(`Click id :${data.id}`);
+                    }}
+                >{data.name}</Button>
+            )}
         </>
     )
 }

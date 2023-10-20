@@ -3,6 +3,21 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createEvent } from '@testing-library/react';
+
+function mitComment(id) {
+  setInterval(() => {
+    window.dispatchEvent(
+      new CustomEvent(`Lesson ${id}`, {
+        title: `Đây là lesson ${id}`
+      })
+    )
+  }, 2000)
+}
+
+mitComment(1);
+mitComment(2);
+mitComment(3);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
