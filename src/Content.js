@@ -11,31 +11,23 @@ import { Button } from "@mui/material";
 import { useEffect, useState } from "react"
 
 export default function Content() {
-    const [size, setSize] = useState(window.innerWidth)
+    const [countTime, setCountTime] = useState(180);
 
     useEffect(() => {
-        const handleSize = () => {
-            setSize(window.innerWidth);
-        }
+        const timer = setInterval(() => {
+            setCountTime(prev => prev - 1)
+        }, 1000)
 
-        window.addEventListener('resize', handleSize)
-        console.log("AddSize");
+        console.log("call")
 
-        return () => {
-            window.removeEventListener("resize", handleSize)
-            console.log("Remove Size");
-        }
+        clearInterval(timer);
     }, [])
 
 
 
     return (
         <>
-            <Button
-                variant="outlined"
-                onClick={() => setSize(size + 1)}
-            >Bấm</Button>
-            <h1>{size}</h1>
+            <h1>{countTime}</h1>
         </>
     )
 }
