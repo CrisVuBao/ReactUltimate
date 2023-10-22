@@ -1,60 +1,43 @@
-
-// useEffect
-
-//3. useEffect(callback, [dependency])
-// - Callback sẽ được gọi lại mỗi khi dependency thay đổi
-
-// -------------------------------
-// Callback luôn được gọi sau khi Component Mounted
+// Học về useReducer
+//useReducer
+// 1. Init state: 0
+// 2. Action: Up (state + 1) / Down (state - 1)
+// 3. Reducer
+// 4. Dispatch
 
 import { Button } from "@mui/material";
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react";
 import "./content.css";
 
-const data = [{
-    id: 1,
-    name: "Học React"
-},
-{
-    id: 2,
-    name: "Học ASP"
-},
-{
-    id: 3,
-    name: "Học Siêu nhân"
+// khởi tạo initState
+const initState = 0;
+
+// khởi tạo action
+const ACTION_UP = 'up';
+const ACTION_DOWN = 'down';
+
+// khởi tạo reducer
+const reducer = (state, action) => {
+    switch (action) {
+        case ACTION_UP:
+            return state + 1;
+        case ACTION_DOWN:
+            return state - 1;
+        default:
+            throw new Error("invalid action");
+    }
 }
-]
 
 export default function Content() {
-    const [lessonId, setLessonId] = useState(1);
-
-    useEffect(() => {
-        const handleLesson = (title) => {
-            console.log(title);
-        }
-
-        window.addEventListener(`Lesson ${lessonId}`, handleLesson)
-
-        // Cleanup Function
-        return () => {
-            window.removeEventListener(`Lesson ${lessonId}`, handleLesson)
-        }
-    }, [lessonId])
+    const [count, dispatch] = useReducer(reducer, initState)
 
     return (
         <>
-            {data.map(data =>
-                <Button
-                    key={data.id}
-                    style={{
-                        backgroundColor: lessonId === data.id ? "#9EDDFF" : ""
-                    }}
-                    onClick={() => {
-                        setLessonId(data.id);
-                        console.log(`Click id :${data.id}`);
-                    }}
-                >{data.name}</Button>
-            )}
+            <div>
+                <Button onClick={() => dispatch(ACTION_UP)}>up</Button>
+                <h3 >{count}</h3>
+                <Button onClick={() => dispatch(ACTION_DOWN)}>down</Button>
+            </div>
         </>
     )
 }
