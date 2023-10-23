@@ -1,22 +1,23 @@
-import { useEffect, useState } from "react";
-import Todo from "./Todo/Todo";
+import { createContext, useContext, useEffect, useState } from "react";
+import Content from "./Content/Content";
 import { Button } from "@mui/material";
-
+import { ParentContext } from "./Context/ParentContext";
 
 function App() {
 
-  const [show, setShow] = useState(false)
+  // sử dụng dữ liệu được nhận từ ParentContext
+  const childrenContext = useContext(ParentContext)
 
   return (
     <>
       <Button
         variant="contained"
         sx={{ margin: 2 }}
-        onClick={() => setShow(!show)}
+        onClick={childrenContext.handleWowTheme}
       >
-        bấm nè
+        Đổi màu chữ
       </Button>
-      {!show && <Todo />}
+      <Content />
     </>
   )
 }

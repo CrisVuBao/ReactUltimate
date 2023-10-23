@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createEvent } from '@testing-library/react';
+import { ParentProvider } from './Context/ParentContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-  <App />
+  // <React.StrictMode>\
+  <ParentProvider>
+    <App />
+  </ParentProvider>
   // </React.StrictMode>
 );
 
