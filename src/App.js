@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Content from "./Content/Content";
+import Todo from "./Todo/Todo";
 import { Button } from "@mui/material";
 
 
@@ -16,7 +16,7 @@ function App() {
       >
         bấm nè
       </Button>
-      {!show && <Content />}
+      {!show && <Todo />}
     </>
   )
 }
